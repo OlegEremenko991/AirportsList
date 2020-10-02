@@ -10,16 +10,12 @@ import Foundation
 class NetworkManager {
     
     class func signIn (userName: String, password: String, completionHandler: @escaping (ResponseModel?, Error?) -> ()) {
-        
-        print("name:\(userName)\npassword:\(password)")
-        
         guard let request = RequestType.getAuthorization(userName, password).finalURL else { return }
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
-                //show alert controller
-                print("DataTask error: \(error!.self)")
                 completionHandler(nil, error)
+                print("\(error!)")
                 return
             }
             do {

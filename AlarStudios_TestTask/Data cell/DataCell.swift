@@ -5,6 +5,8 @@
 //  Created by Олег Еременко on 02.10.2020.
 //
 
+// на 4:53 показывает настройки ячейки https://youtu.be/Axe4SoUigLU?t=293
+
 import UIKit
 
 class DataCell: UITableViewCell {
@@ -17,7 +19,7 @@ class DataCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
-    @IBOutlet weak var countryImageView: UIImageView!
+    @IBOutlet weak var countryImageView: CustomImageView!
     
     // MARK: Lifecycle
     

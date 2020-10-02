@@ -61,14 +61,14 @@ final class LoginViewController: UIViewController {
         loginTextField.becomeFirstResponder()
     }
     
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true)
+    private func showAlertController(title: String, message: String) {
+        let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
+        let alert = AlertManager.showAlert(title: title, message: message, actions: [okAction])
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     
     private func requestAuthorization (username: String, password: String) {
+        print("trying to log in")
         NetworkManager.signIn(userName: username, password: password) { (auth, error) in
             if let authorizationData = auth {
                 if authorizationData.status == "ok" {
@@ -79,14 +79,14 @@ final class LoginViewController: UIViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.showAlert(title: "Error", message: "Incorrect login/password")
+                        self.showAlertController(title: "Error", message: "Incorrect login/password")
                         self.activityIndicator.stopAnimating()
                         self.activityIndicator.hidesWhenStopped = true
                     }
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Error", message: "Request failed")
+                    self.showAlertController(title: "Error", message: "Request failed")
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidesWhenStopped = true
                 }
@@ -98,7 +98,6 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         activityIndicator.startAnimating()
-        print("trying to log in")
         requestAuthorization(username: loginTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     

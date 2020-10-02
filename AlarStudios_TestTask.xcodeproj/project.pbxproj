@@ -26,6 +26,9 @@
 		67A8A37325279BFC004A3672 /* UD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A37225279BFC004A3672 /* UD.swift */; };
 		67A8A37A2527A01C004A3672 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3782527A01C004A3672 /* DataCell.swift */; };
 		67A8A37B2527A01C004A3672 /* DataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A8A3792527A01C004A3672 /* DataCell.xib */; };
+		67A8A3802527AF0B004A3672 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A37F2527AF0B004A3672 /* AlertManager.swift */; };
+		67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3822527C5B1004A3672 /* MapViewController.swift */; };
+		67A8A38B2527CB7C004A3672 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A38A2527CB7C004A3672 /* CustomImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		67A8A37225279BFC004A3672 /* UD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UD.swift; sourceTree = "<group>"; };
 		67A8A3782527A01C004A3672 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		67A8A3792527A01C004A3672 /* DataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCell.xib; sourceTree = "<group>"; };
+		67A8A37F2527AF0B004A3672 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		67A8A3822527C5B1004A3672 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		67A8A38A2527CB7C004A3672 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 			children = (
 				67A8A33A25276FBD004A3672 /* LoginViewController.swift */,
 				67A8A36E25279B83004A3672 /* MainViewController.swift */,
+				67A8A3822527C5B1004A3672 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -157,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				67A8A37225279BFC004A3672 /* UD.swift */,
+				67A8A37F2527AF0B004A3672 /* AlertManager.swift */,
+				67A8A38A2527CB7C004A3672 /* CustomImageView.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -241,6 +250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A8A3802527AF0B004A3672 /* AlertManager.swift in Sources */,
+				67A8A38B2527CB7C004A3672 /* CustomImageView.swift in Sources */,
 				67A8A3582527949F004A3672 /* NetworkManager.swift in Sources */,
 				67A8A36F25279B83004A3672 /* MainViewController.swift in Sources */,
 				67A8A34F25279271004A3672 /* UIViewController.swift in Sources */,
@@ -256,6 +267,7 @@
 				67A8A37325279BFC004A3672 /* UD.swift in Sources */,
 				67A8A37A2527A01C004A3672 /* DataCell.swift in Sources */,
 				67A8A35B252794D1004A3672 /* RequestType.swift in Sources */,
+				67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

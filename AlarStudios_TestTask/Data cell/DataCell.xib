@@ -19,21 +19,24 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tTQ-bY-CYL">
                         <rect key="frame" x="15" y="15" width="281" height="97"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PAr-0z-WrW">
-                                <rect key="frame" x="0.0" y="2.5" width="55.5" height="92.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PAr-0z-WrW" customClass="CustomImageView" customModule="AlarStudios_TestTask" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="2.5" width="50" height="92.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="eYA-kA-cSv"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aN4-Cx-EfD">
-                                <rect key="frame" x="85.5" y="0.0" width="195.5" height="97"/>
+                                <rect key="frame" x="80" y="0.0" width="201" height="97"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCg-D5-1BP">
-                                        <rect key="frame" x="0.0" y="0.0" width="195.5" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="201" height="43.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9r-ch-d95">
-                                        <rect key="frame" x="0.0" y="53.5" width="195.5" height="43.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="53.5" width="201" height="43.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
