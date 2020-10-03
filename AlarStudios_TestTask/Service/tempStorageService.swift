@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UD {
+final class TempStorageService {
     
     // MARK: Private properties
     
@@ -15,7 +15,7 @@ class UD {
     
     // MARK: Public properties
     
-    static let shared = UD()
+    static let shared = TempStorageService()
     
     var code: String? {
         set { UserDefaults.standard.set(newValue, forKey: codeKey) }
