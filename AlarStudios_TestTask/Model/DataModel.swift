@@ -8,7 +8,6 @@
 import Foundation
 
 struct DataModel: Codable {
-    var status: String = ""
     var page: Int = 0
     var data: [JsonData] = []
 }
