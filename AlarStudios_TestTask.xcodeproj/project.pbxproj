@@ -28,6 +28,7 @@
 		67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3822527C5B1004A3672 /* MapViewController.swift */; };
 		67A8A38B2527CB7C004A3672 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A38A2527CB7C004A3672 /* CustomImageView.swift */; };
 		67A8A38E2528416D004A3672 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A38D2528416D004A3672 /* CustomCell.swift */; };
+		67A8A3A12528D9B2004A3672 /* MapMarkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3A02528D9B2004A3672 /* MapMarkData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		67A8A3822527C5B1004A3672 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		67A8A38A2527CB7C004A3672 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		67A8A38D2528416D004A3672 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		67A8A3A02528D9B2004A3672 /* MapMarkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				67A8A362252795AF004A3672 /* DataModel.swift */,
 				67A8A365252795D1004A3672 /* JsonData.swift */,
 				67A8A35A252794D1004A3672 /* RequestType.swift */,
+				67A8A3A02528D9B2004A3672 /* MapMarkData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				67A8A32825276F03004A3672 /* SceneDelegate.swift in Sources */,
 				67A8A349252773CD004A3672 /* UIButton.swift in Sources */,
 				67A8A35F25279562004A3672 /* ResponseModel.swift in Sources */,
+				67A8A3A12528D9B2004A3672 /* MapMarkData.swift in Sources */,
 				67A8A37325279BFC004A3672 /* TempStorageService.swift in Sources */,
 				67A8A35B252794D1004A3672 /* RequestType.swift in Sources */,
 				67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */,

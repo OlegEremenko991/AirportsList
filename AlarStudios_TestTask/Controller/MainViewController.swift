@@ -130,10 +130,11 @@ extension MainViewController: UITableViewDelegate {
         
         guard let targetVC = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else { return }
         
-        targetVC.placeNameMap = dataSource.data[indexPath.row].name ?? ""
-        targetVC.placeCountryMap = dataSource.data[indexPath.row].country ?? ""
-        targetVC.placeLatitudeMap = dataSource.data[indexPath.row].lat ?? 0
-        targetVC.placeLongtitudeMap = dataSource.data[indexPath.row].lon ?? 0
+        targetVC.placeName = dataSource.data[indexPath.row].name ?? ""
+        targetVC.placeCountry = dataSource.data[indexPath.row].country ?? ""
+        targetVC.placeLatitude = dataSource.data[indexPath.row].lat ?? 0
+        targetVC.placeLongitude = dataSource.data[indexPath.row].lon ?? 0
+        targetVC.title = targetVC.placeName
         
         tableView.deselectRow(at: indexPath, animated: true)
         
