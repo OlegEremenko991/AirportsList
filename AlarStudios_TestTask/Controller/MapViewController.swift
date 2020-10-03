@@ -13,6 +13,10 @@ class MapViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var latLabel: UILabel!
+    @IBOutlet weak var lonLabel: UILabel!
     
     // MARK: Public properties
     
@@ -26,10 +30,19 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         showMark()
     }
     
     // MARK: Private methods
+    
+    private func setupView() {
+        title = "Airport location"
+        nameLabel.setupLabel(text: "Airport name: " + placeName, textAlignment: .center, font: UIFont(name: "Verdana-Bold", size: 17))
+        countryLabel.setupLabel(text: "Country: " + placeCountry, textAlignment: .center, font: UIFont(name: "Verdana-Medium", size: 17))
+        latLabel.setupLabel(text: "Latitude: " + String(placeLatitude), textAlignment: .center)
+        lonLabel.setupLabel(text: "Longitude: " + String(placeLongitude), textAlignment: .center)
+    }
     
     private func showMark() {
     

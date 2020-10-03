@@ -58,7 +58,6 @@ final class MainViewController: UIViewController {
                 self.pageNumber += 1
                 self.dataSource.append(contentsOf: data?.data ?? .init())
                 self.tableView.reloadData()
-                print(self.dataSource)
             }
         }
     }
@@ -133,7 +132,7 @@ extension MainViewController: UITableViewDelegate {
         targetVC.placeCountry = dataSource[indexPath.row].country ?? ""
         targetVC.placeLatitude = dataSource[indexPath.row].lat ?? 0
         targetVC.placeLongitude = dataSource[indexPath.row].lon ?? 0
-        targetVC.title = targetVC.placeName
+//        targetVC.title = targetVC.placeName
         
         tableView.deselectRow(at: indexPath, animated: true)
         

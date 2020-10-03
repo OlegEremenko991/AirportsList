@@ -32,6 +32,7 @@ class NetworkService {
     
     static func getData (code: String, pageNumber: Int, completion: @escaping (DataModel?, Error?) -> ()) {
         guard let request = RequestType.gatherData(code, String(pageNumber)).finalURL else { return }
+        print(request)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let goodData = data else { return }
             do {
