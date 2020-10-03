@@ -68,13 +68,12 @@ final class LoginViewController: UIViewController {
     }
     
     private func requestAuthorization (username: String, password: String) {
-        print("trying to log in")
         NetworkService.signIn(userName: username, password: password) { (auth, error) in
             if let authorizationData = auth {
                 if authorizationData.status == "ok" {
-                    TempStorageService.shared.code = auth!.code
                     DispatchQueue.main.async {
                         guard let secondVC = self.storyboard?.instantiateViewController(identifier: MainViewController.identifier) as? MainViewController else { return }
+                        secondVC.code = auth!.code
                         self.show(secondVC, sender: nil)
                     }
                 } else {
