@@ -30,7 +30,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        requestData(forPage: pageNumber)
+        requestData()
     }
     
     deinit {
@@ -48,12 +48,12 @@ final class MainViewController: UIViewController {
         tableView.register(UINib.init(nibName: DataCell.identifier, bundle: nil), forCellReuseIdentifier: DataCell.identifier)
     }
     
-    private func requestData(forPage pageNumber: Int) {
+    private func requestData() {
         self.stillLoading = true
         NetworkManager.getData(code: UD.shared.code ?? "", pageNumber: pageNumber) { (data, error) in
             guard data != nil else {
                 DispatchQueue.main.async {
-                    self.showAlertController(title: "Error", message: "No data to show")
+                    self.showAlertController(title: "Error", message: "Could not load data")
                 }
                 return
             }
@@ -67,9 +67,18 @@ final class MainViewController: UIViewController {
     }
     
     private func showAlertController(title: String, message: String) {
-        let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
-        let alert = AlertManager.showAlert(title: title, message: message, actions: [okAction])
-        self.navigationController?.present(alert, animated: true, completion: nil)
+        let skipAction = UIAlertAction(title: "Skip", style: .default, handler: {_ in
+            self.pageNumber += 1
+            self.requestData()
+        })
+        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: {_ in
+            self.requestData()
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: {_ in
+            self.stillLoading = false
+        })
+        let alert = AlertManager.showAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
@@ -100,7 +109,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = dataModel.data.count - 1
         if indexPath.row == lastElement {
-            requestData(forPage: pageNumber)
+            requestData()
         }
     }
     
