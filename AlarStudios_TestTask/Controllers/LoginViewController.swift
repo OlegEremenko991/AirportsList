@@ -62,7 +62,7 @@ final class LoginViewController: UIViewController {
     private func showAlertController(title: String, message: String) {
         let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
         let alert = AlertService.showAlert(title: title, message: message, actions: [okAction])
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
     
     private func requestAuthorization (username: String, password: String) {

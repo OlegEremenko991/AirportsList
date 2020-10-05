@@ -68,7 +68,7 @@ final class MainViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
         let alert = AlertService.showAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true)
     }
     
 }
