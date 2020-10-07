@@ -41,34 +41,42 @@ final class MainViewController: UIViewController {
         tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.identifier)
     }
     
+    private func updateDataSource(with data: DataModel) {
+        pageNumber += 1
+        dataSource.append(contentsOf: data.data)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     private func requestData() {
-        NetworkService.getData(code: code, pageNumber: pageNumber) { (data, error) in
-            guard data != nil else {
-                DispatchQueue.main.async {
-                    self.showAlertController(title: "Error", message: "Could not load data")
-                }
+        NetworkService.getData(code: code, pageNumber: pageNumber) { result in
+            switch result {
+            case .success(let data):
+                self.updateDataSource(with: data)
+            case .failure(let error):
+                print(error)
+                self.showAlertController(title: "Error", message: "Could not load data")
                 return
-            }
-            DispatchQueue.main.async {
-                self.pageNumber += 1
-                self.dataSource.append(contentsOf: data?.data ?? .init())
-                self.tableView.reloadData()
             }
         }
     }
     
     private func showAlertController(title: String, message: String) {
-        let skipAction = UIAlertAction(title: "Skip", style: .default, handler: {_ in
-            self.pageNumber += 1
-            self.requestData()
-        })
-        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: {_ in
-            self.requestData()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        
-        let alert = AlertService.showAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let skipAction = UIAlertAction(title: "Skip", style: .default, handler: {_ in
+                self.pageNumber += 1
+                self.requestData()
+            })
+            let retryAction = UIAlertAction(title: "Retry", style: .default, handler: {_ in
+                self.requestData()
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+            
+            let alert = AlertService.showAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
+            
+            self.present(alert, animated: true)
+        }
     }
     
 }

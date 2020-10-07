@@ -60,32 +60,37 @@ final class LoginViewController: UIViewController {
     }
     
     private func showAlertController(title: String, message: String) {
-        let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
-        let alert = AlertService.showAlert(title: title, message: message, actions: [okAction])
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
+            let alert = AlertService.showAlert(title: title, message: message, actions: [okAction])
+            self.present(alert, animated: true)
+            
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func presentMainViewController(with responseData: ResponseModel) {
+        DispatchQueue.main.async {
+            guard let mainViewController = self.storyboard?.instantiateViewController(identifier: MainViewController.identifier) as? MainViewController else { return }
+            mainViewController.code = responseData.code
+            self.show(mainViewController, sender: nil)
+        }
     }
     
     private func requestAuthorization (username: String, password: String) {
-        NetworkService.signIn(userName: username, password: password) { (auth, error) in
-            if let authorizationData = auth {
-                if authorizationData.status == "ok" {
-                    DispatchQueue.main.async {
-                        guard let secondVC = self.storyboard?.instantiateViewController(identifier: MainViewController.identifier) as? MainViewController else { return }
-                        secondVC.code = auth!.code
-                        self.show(secondVC, sender: nil)
-                    }
+        NetworkService.signIn(userName: username, password: password) { result in
+            switch result {
+            case .success(let auth):
+                print("success")
+                if auth.status == "ok" {
+                    self.presentMainViewController(with: auth)
                 } else {
-                    DispatchQueue.main.async {
-                        self.showAlertController(title: "Error", message: "Incorrect login/password")
-                        self.activityIndicator.stopAnimating()
-                    }
+                    self.showAlertController(title: "Error", message: "Incorrect login/password")
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.showAlertController(title: "Error", message: "Request failed")
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.hidesWhenStopped = true
-                }
+                
+            case .failure(let error):
+                print(error)
+                self.showAlertController(title: "Error", message: "Request failed")
             }
         }
     }
