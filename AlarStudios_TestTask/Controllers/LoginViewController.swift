@@ -80,14 +80,13 @@ final class LoginViewController: UIViewController {
     private func requestAuthorization (username: String, password: String) {
         NetworkService.signIn(userName: username, password: password) { result in
             switch result {
-            case .success(let auth):
+            case .success(let authData):
                 print("success")
-                if auth.status == "ok" {
-                    self.presentMainViewController(with: auth)
+                if authData.status == "ok" {
+                    self.presentMainViewController(with: authData)
                 } else {
                     self.showAlertController(title: "Error", message: "Incorrect login/password")
                 }
-                
             case .failure(let error):
                 print(error)
                 self.showAlertController(title: "Error", message: "Request failed")
