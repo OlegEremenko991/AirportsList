@@ -9,11 +9,11 @@ import UIKit
 
 public final class AlertService {
     
-    static func showAlert(title: String, message: String, style: UIAlertController.Style? = nil, actions: [UIAlertAction]) -> UIAlertController {
+    static func customAlert(title: String, message: String, style: UIAlertController.Style? = nil, actions: [UIAlertAction]) -> UIAlertController {
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: style ?? .alert)
-        for action in actions { alert.addAction(action) }
-        return alert
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style ?? .alert)
+        for action in actions { alertController.addAction(action) }
+        return alertController
     }
     
 }

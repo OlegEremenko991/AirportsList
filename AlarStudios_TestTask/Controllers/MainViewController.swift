@@ -56,7 +56,7 @@ final class MainViewController: UIViewController {
             case .success(let data):
                 self.updateDataSource(with: data)
             case .failure(let error):
-                print(error)
+                print(error.rawValue)
                 self.showAlertController(title: "Error", message: error.rawValue)
                 return
             }
@@ -72,9 +72,9 @@ final class MainViewController: UIViewController {
             let retryAction = UIAlertAction(title: "Retry", style: .default, handler: {_ in
                 self.requestData()
             })
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
             
-            let alert = AlertService.showAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
+            let alert = AlertService.customAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
             
             self.present(alert, animated: true)
         }
@@ -103,6 +103,9 @@ extension MainViewController: UITableViewDataSource {
         let loadOperation = LoadImageOperation()
         
         if let url = URL(string: "https://cdn.countryflags.com/thumbs/\(dataSource[indexPath.row].country?.lowercased().replacingOccurrences(of: " ", with: "-") ?? "")/flag-800.png") {
+            
+            // Setup loadOperation and add it to the queue
+            
             loadOperation.url = url
             loadOperation.imageView = customCell.flagImage
             queue.addOperation {

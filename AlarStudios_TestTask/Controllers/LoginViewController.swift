@@ -62,7 +62,7 @@ final class LoginViewController: UIViewController {
     private func showAlertController(title: String, message: String) {
         DispatchQueue.main.async {
             let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
-            let alert = AlertService.showAlert(title: title, message: message, actions: [okAction])
+            let alert = AlertService.customAlert(title: title, message: message, actions: [okAction])
             self.present(alert, animated: true)
             
             self.activityIndicator.stopAnimating()
