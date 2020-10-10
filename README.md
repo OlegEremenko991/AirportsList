@@ -1,5 +1,5 @@
 # AlarStudios_TestTask
-This is a test task.
+This is a test task. Below you can read the requirements.
 
 ## Login screen
 1. Shows text fields for login and password, and the "Log in" button.
