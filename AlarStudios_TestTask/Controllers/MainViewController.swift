@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
     
     private var dataSource = DataModel().data
     private var pageNumber = 1
+    private var alertController: UIAlertController?
     private let queue = OperationQueue()
     
     // MARK: IBOutlets
@@ -65,16 +66,25 @@ final class MainViewController: UIViewController {
     
     private func showAlertController(title: String, message: String) {
         DispatchQueue.main.async {
-            let skipAction = UIAlertAction(title: "Skip", style: .default, handler: {_ in
+            let skipAction = UIAlertAction(title: "Skip", style: .default, handler: { _ in
                 self.pageNumber += 1
                 self.requestData()
+                self.alertController = nil
             })
             let retryAction = UIAlertAction(title: "Retry", style: .default, handler: {_ in
                 self.requestData()
+                self.alertController = nil
             })
-            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                self.alertController = nil
+            })
             
-            let alert = AlertService.customAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
+            // Prevent from showing multiple alert controllers
+            guard self.alertController == nil else { return }
+            
+            self.alertController = AlertService.customAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
+            
+            guard let alert = self.alertController else { return }
             
             self.present(alert, animated: true)
         }
