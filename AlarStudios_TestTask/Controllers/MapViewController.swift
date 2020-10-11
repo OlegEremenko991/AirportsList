@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
             let cameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 10000)
             self.mapView.setCameraZoomRange(cameraZoomRange, animated: true)
             
-            let placeToShow = MapMarkData(placeTitle: self.placeName, country: self.placeCountry, locationCoordinate: CLLocationCoordinate2D(latitude: initialCenterLocation.coordinate.latitude, longitude: initialCenterLocation.coordinate.longitude))
+            let placeToShow = MapModel(placeTitle: self.placeName, country: self.placeCountry, locationCoordinate: CLLocationCoordinate2D(latitude: initialCenterLocation.coordinate.latitude, longitude: initialCenterLocation.coordinate.longitude))
             self.mapView.addAnnotation(placeToShow)
         }
 

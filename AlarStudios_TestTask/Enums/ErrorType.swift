@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ErrorModel: String, Error {
+enum ErrorType: String, Error {
     case invalidLoginPassword = "Incorrect login/password"
     case invalidData = "The data recieved is invalid"
     case requestFailed = "The request failed, check your Internet connection"

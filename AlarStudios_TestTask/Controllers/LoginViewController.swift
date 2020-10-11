@@ -84,7 +84,7 @@ final class LoginViewController: UIViewController {
                 if authData.status == "ok" {
                     self.presentMainViewController(with: authData)
                 } else {
-                    self.showAlertController(title: "Error", message: ErrorModel.invalidLoginPassword.rawValue)
+                    self.showAlertController(title: "Error", message: ErrorType.invalidLoginPassword.rawValue)
                 }
             case .failure(let error):
                 self.showAlertController(title: "Error", message: error.rawValue)
@@ -96,7 +96,7 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         if loginTextField.text == "" || passwordTextField.text == "" {
-            showAlertController(title: "Error", message: ErrorModel.noLoginPassword.rawValue)
+            showAlertController(title: "Error", message: ErrorType.noLoginPassword.rawValue)
         } else {
             requestAuthorization(username: loginTextField.text ?? "", password: passwordTextField.text ?? "")
         }

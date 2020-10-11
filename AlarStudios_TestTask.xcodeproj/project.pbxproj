@@ -20,16 +20,14 @@
 		67A8A34F25279271004A3672 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A34E25279271004A3672 /* UIViewController.swift */; };
 		67A8A3582527949F004A3672 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3572527949F004A3672 /* NetworkService.swift */; };
 		67A8A35B252794D1004A3672 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A35A252794D1004A3672 /* RequestType.swift */; };
-		67A8A35F25279562004A3672 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A35E25279562004A3672 /* ResponseModel.swift */; };
-		67A8A363252795AF004A3672 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A362252795AF004A3672 /* DataModel.swift */; };
-		67A8A366252795D1004A3672 /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A365252795D1004A3672 /* JsonData.swift */; };
+		67A8A35F25279562004A3672 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A35E25279562004A3672 /* JsonModel.swift */; };
 		67A8A36F25279B83004A3672 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A36E25279B83004A3672 /* MainViewController.swift */; };
 		67A8A3802527AF0B004A3672 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A37F2527AF0B004A3672 /* AlertService.swift */; };
 		67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3822527C5B1004A3672 /* MapViewController.swift */; };
 		67A8A38B2527CB7C004A3672 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A38A2527CB7C004A3672 /* CustomImageView.swift */; };
 		67A8A38E2528416D004A3672 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A38D2528416D004A3672 /* CustomCell.swift */; };
-		67A8A3A12528D9B2004A3672 /* MapMarkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3A02528D9B2004A3672 /* MapMarkData.swift */; };
-		67F989DD252E1E3F00A5BB3B /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F989DC252E1E3F00A5BB3B /* ErrorModel.swift */; };
+		67A8A3A12528D9B2004A3672 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A8A3A02528D9B2004A3672 /* MapModel.swift */; };
+		67F989DD252E1E3F00A5BB3B /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F989DC252E1E3F00A5BB3B /* ErrorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,16 +46,14 @@
 		67A8A34E25279271004A3672 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		67A8A3572527949F004A3672 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		67A8A35A252794D1004A3672 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
-		67A8A35E25279562004A3672 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
-		67A8A362252795AF004A3672 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		67A8A365252795D1004A3672 /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
+		67A8A35E25279562004A3672 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		67A8A36E25279B83004A3672 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		67A8A37F2527AF0B004A3672 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		67A8A3822527C5B1004A3672 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		67A8A38A2527CB7C004A3672 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		67A8A38D2528416D004A3672 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		67A8A3A02528D9B2004A3672 /* MapMarkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkData.swift; sourceTree = "<group>"; };
-		67F989DC252E1E3F00A5BB3B /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		67A8A3A02528D9B2004A3672 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		67F989DC252E1E3F00A5BB3B /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		677C8D352533539000A06677 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				67F989DC252E1E3F00A5BB3B /* ErrorType.swift */,
+				67A8A35A252794D1004A3672 /* RequestType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		67A8A31925276F03004A3672 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +95,7 @@
 		67A8A32425276F03004A3672 /* AlarStudios_TestTask */ = {
 			isa = PBXGroup;
 			children = (
+				677C8D352533539000A06677 /* Enums */,
 				67A8A34B25278B90004A3672 /* App */,
 				67A8A35D25279557004A3672 /* Models */,
 				67A8A33D25276FC2004A3672 /* Controllers */,
@@ -155,12 +161,8 @@
 		67A8A35D25279557004A3672 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				67A8A35E25279562004A3672 /* ResponseModel.swift */,
-				67A8A362252795AF004A3672 /* DataModel.swift */,
-				67A8A365252795D1004A3672 /* JsonData.swift */,
-				67A8A35A252794D1004A3672 /* RequestType.swift */,
-				67A8A3A02528D9B2004A3672 /* MapMarkData.swift */,
-				67F989DC252E1E3F00A5BB3B /* ErrorModel.swift */,
+				67A8A35E25279562004A3672 /* JsonModel.swift */,
+				67A8A3A02528D9B2004A3672 /* MapModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,17 +253,15 @@
 				67A8A34F25279271004A3672 /* UIViewController.swift in Sources */,
 				67A8A33B25276FBD004A3672 /* LoginViewController.swift in Sources */,
 				67A8A343252772A8004A3672 /* UILabel.swift in Sources */,
-				67A8A363252795AF004A3672 /* DataModel.swift in Sources */,
-				67F989DD252E1E3F00A5BB3B /* ErrorModel.swift in Sources */,
+				67F989DD252E1E3F00A5BB3B /* ErrorType.swift in Sources */,
 				67A8A38E2528416D004A3672 /* CustomCell.swift in Sources */,
-				67A8A366252795D1004A3672 /* JsonData.swift in Sources */,
 				67A8A346252772C7004A3672 /* UITextField.swift in Sources */,
 				67A8A32625276F03004A3672 /* AppDelegate.swift in Sources */,
 				67A8A32825276F03004A3672 /* SceneDelegate.swift in Sources */,
 				67A8A349252773CD004A3672 /* UIButton.swift in Sources */,
 				674E9CD82532059100144D26 /* LoadImageOperation.swift in Sources */,
-				67A8A35F25279562004A3672 /* ResponseModel.swift in Sources */,
-				67A8A3A12528D9B2004A3672 /* MapMarkData.swift in Sources */,
+				67A8A35F25279562004A3672 /* JsonModel.swift in Sources */,
+				67A8A3A12528D9B2004A3672 /* MapModel.swift in Sources */,
 				67A8A35B252794D1004A3672 /* RequestType.swift in Sources */,
 				67A8A3832527C5B1004A3672 /* MapViewController.swift in Sources */,
 			);

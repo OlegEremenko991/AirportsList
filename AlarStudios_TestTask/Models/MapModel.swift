@@ -7,7 +7,7 @@
 
 import MapKit
 
-final class MapMarkData: NSObject, MKAnnotation {
+final class MapModel: NSObject, MKAnnotation {
     
     // MARK: Public properties
     
