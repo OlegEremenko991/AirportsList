@@ -22,3 +22,7 @@ loaded asynchronously, and a name from JSON.
 ## Map screen
 1. Show all the fields from JSON and a map with a point, coordinates are the "lat" / "lon" fields from JSON.
 2. Give the user an opportunity to go back to the Main screen.
+
+## Screenshots and video
+
+[Link to google drive](https://drive.google.com/drive/folders/1c4HiP1h8j98Mr-JlbZ7q2FrWNlOVMesq?usp=sharing)
