@@ -8,15 +8,15 @@
 import UIKit
 
 final class CustomImageView: UIImageView {
-    
+
     // MARK: Private properties
-    
+
     private var task: URLSessionDataTask!
     private let spinner = UIActivityIndicatorView()
     private let imageCache = NSCache<AnyObject, AnyObject>()
-    
+
     // MARK: Private methods
-    
+
     private func addSpinner() {
         addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -24,22 +24,21 @@ final class CustomImageView: UIImageView {
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         spinner.startAnimating()
     }
-    
+
     private func removeSpinner() {
         spinner.removeFromSuperview()
     }
-    
+
     // MARK: Public methods
-    
+
     func loadImage(from url: URL) {
-        
         DispatchQueue.main.async {
             self.image = nil
             self.addSpinner()
         }        
-        
+
         if let task = task { task.cancel() }
-        
+
         if let imageFromCache = imageCache.object(forKey: url.absoluteString as AnyObject) as? UIImage {
             DispatchQueue.main.async {
                 self.image = imageFromCache
@@ -47,16 +46,16 @@ final class CustomImageView: UIImageView {
                 return
             }
         }
-        
+
         task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, let newImage = UIImage(data: data) else {
                 print("Could not load image from url: \(url)")
                 return
             }
-            
+
             // Store image in cache
             self.imageCache.setObject(newImage, forKey: url.absoluteString as AnyObject)
-            
+
             DispatchQueue.main.async {
                 self.image = newImage
                 self.removeSpinner()
@@ -64,5 +63,5 @@ final class CustomImageView: UIImageView {
         }
         task.resume()
     }
-    
+
 }
