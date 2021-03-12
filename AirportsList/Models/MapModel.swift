@@ -9,14 +9,14 @@ import MapKit
 
 final class MapModel: NSObject, MKAnnotation {
 
-    // MARK: Public properties
+    // MARK: - Public properties
 
     let title: String?
     let locationName: String?
     let coordinate: CLLocationCoordinate2D
-    var subtitle: String? { return locationName }
+    var subtitle: String? { locationName }
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     init(placeTitle: String?, country: String?, locationCoordinate: CLLocationCoordinate2D) {
         title = placeTitle

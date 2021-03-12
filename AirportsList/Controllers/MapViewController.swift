@@ -8,17 +8,42 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
     @IBOutlet private weak var mapView: MKMapView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var countryLabel: UILabel!
-    @IBOutlet private weak var latLabel: UILabel!
-    @IBOutlet private weak var lonLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel! {
+        didSet {
+            nameLabel.setupLabel(text: "Airport name: " + placeName,
+                                 textAlignment: .center,
+                                 font: UIFont(name: "Verdana-Bold", size: 17))
+        }
+    }
 
-    // MARK: Public properties
+    @IBOutlet private weak var countryLabel: UILabel! {
+        didSet {
+            countryLabel.setupLabel(text: "Country: " + placeCountry,
+                                    textAlignment: .center,
+                                    font: UIFont(name: "Verdana-Medium", size: 17))
+        }
+    }
+
+    @IBOutlet private weak var latLabel: UILabel! {
+        didSet {
+            latLabel.setupLabel(text: "Latitude: " + String(placeLatitude),
+                                textAlignment: .center)
+        }
+    }
+
+    @IBOutlet private weak var lonLabel: UILabel! {
+        didSet {
+            lonLabel.setupLabel(text: "Longitude: " + String(placeLongitude),
+                                textAlignment: .center)
+        }
+    }
+
+    // MARK: - Public properties
 
     static let identifier = "MapViewControllerID"
     var placeName = ""
@@ -26,7 +51,7 @@ class MapViewController: UIViewController {
     var placeLatitude: Double = 0.0
     var placeLongitude: Double = 0.0
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +59,10 @@ class MapViewController: UIViewController {
         showMark()
     }
 
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func setupView() {
         title = "Airport location"
-        nameLabel.setupLabel(text: "Airport name: " + placeName, textAlignment: .center, font: UIFont(name: "Verdana-Bold", size: 17))
-        countryLabel.setupLabel(text: "Country: " + placeCountry, textAlignment: .center, font: UIFont(name: "Verdana-Medium", size: 17))
-        latLabel.setupLabel(text: "Latitude: " + String(placeLatitude), textAlignment: .center)
-        lonLabel.setupLabel(text: "Longitude: " + String(placeLongitude), textAlignment: .center)
     }
 
     private func showMark() {

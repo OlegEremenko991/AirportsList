@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomCell: UITableViewCell {
 
-    // MARK: Public properties
+    // MARK: - Public properties
 
     static let identifier = "CustomCellId"
     let flagImage = CustomImageView()
@@ -17,64 +17,75 @@ final class CustomCell: UITableViewCell {
     let countryLabel = UILabel()
     let containerView = UIView()
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        setupSubviews()
+        setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func setupView() {
-        setupImageView()
-        setupContainerView()
+        [flagImage, titleLabel, countryLabel, containerView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        [titleLabel, countryLabel].forEach { $0.numberOfLines = 0 }
+        titleLabel.font = UIFont(name: "Verdana-Bold", size: 16)
+        countryLabel.font = UIFont(name: "Verdana", size: 14)
     }
 
-    private func setupImageView() {
-        addSubview(flagImage)
-        flagImage.translatesAutoresizingMaskIntoConstraints = false
-        flagImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        flagImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        flagImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        flagImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-
-    private func setupContainerView() {
+    private func setupSubviews() {
         containerView.addSubview(titleLabel)
         containerView.addSubview(countryLabel)
-        addSubview(containerView)
-
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: flagImage.trailingAnchor, constant: 20).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-
-        setupTitleLabel()
-        setupCountryLabel()
+        contentView.addSubview(flagImage)
+        contentView.addSubview(containerView)
     }
 
-    private func setupTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        titleLabel.font = UIFont(name: "Verdana-Bold", size: 16)
-        titleLabel.numberOfLines = 0
-    }
-    
-    private func setupCountryLabel() {
-        countryLabel.translatesAutoresizingMaskIntoConstraints = false
-        countryLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        countryLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        countryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
-        countryLabel.font = UIFont(name: "Verdana", size: 14)
-        countryLabel.numberOfLines = 0
+    private func setupConstraints() {
+        // Setup flagImage
+        NSLayoutConstraint.activate(
+            [
+                flagImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+                flagImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                flagImage.widthAnchor.constraint(equalToConstant: 50),
+                flagImage.heightAnchor.constraint(equalToConstant: 50)
+            ]
+        )
+
+        // Setup containerView
+        NSLayoutConstraint.activate(
+            [
+                containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                containerView.leadingAnchor.constraint(equalTo: flagImage.trailingAnchor, constant: 20),
+                containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+                containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            ]
+        )
+
+        // Setup titleLabel
+        NSLayoutConstraint.activate(
+            [
+                titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            ]
+        )
+
+        // Setup countryLabel
+        NSLayoutConstraint.activate(
+            [
+                countryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+                countryLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                countryLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            ]
+        )
     }
 
 }

@@ -9,19 +9,23 @@ import UIKit
 
 final class CustomImageView: UIImageView {
 
-    // MARK: Private properties
+    // MARK: - Private properties
 
     private var task: URLSessionDataTask!
     private let spinner = UIActivityIndicatorView()
     private let imageCache = NSCache<AnyObject, AnyObject>()
 
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func addSpinner() {
         addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        NSLayoutConstraint.activate(
+            [
+                spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+                spinner.centerXAnchor.constraint(equalTo: centerXAnchor)
+            ]
+        )
         spinner.startAnimating()
     }
 
@@ -29,7 +33,7 @@ final class CustomImageView: UIImageView {
         spinner.removeFromSuperview()
     }
 
-    // MARK: Public methods
+    // MARK: - Public methods
 
     func loadImage(from url: URL) {
         DispatchQueue.main.async {

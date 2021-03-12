@@ -8,7 +8,6 @@
 import UIKit
 
 extension UITextField {
-
     func setupTextField(placeholder: String,
                         borderWidth: CGFloat? = nil,
                         borderColor: UIColor? = nil,

@@ -8,7 +8,6 @@
 import UIKit
 
 extension UILabel {
-
     func setupLabel(text: String,
                     textAlignment: NSTextAlignment? = nil,
                     font: UIFont? = nil,

@@ -9,14 +9,31 @@ import UIKit
 
 final class LoginViewController: UIViewController {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
-    @IBOutlet private weak var loginTextField: UITextField!
-    @IBOutlet private weak var passwordTextField: UITextField!
-    @IBOutlet private weak var loginButton: UIButton!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var loginTextField: UITextField! {
+        didSet {
+            loginTextField.delegate = self
+            loginTextField.setupTextField(placeholder: "Your login", isSecureTextEntry: false)
+        }
+    }
 
-    // MARK: Lifecycle
+    @IBOutlet private weak var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.delegate = self
+            passwordTextField.setupTextField(placeholder: "Your password", isSecureTextEntry: true)
+        }
+    }
+
+    @IBOutlet private weak var loginButton: UIButton! {
+        didSet { loginButton.setupButton(backgroundColor: .blue, title: "Log in", titleColor: .white, cornerRadius: 10) }
+    }
+
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView! {
+        didSet { activityIndicator.hidesWhenStopped = true }
+    }
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +50,11 @@ final class LoginViewController: UIViewController {
         activityIndicator.stopAnimating()
     }
 
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func setupView() {
-        self.title = "Login screen"
-        
-        activityIndicator.hidesWhenStopped = true
-        
-        loginTextField.setupTextField(placeholder: "Your login", isSecureTextEntry: false)
-        
-        passwordTextField.setupTextField(placeholder: "Your password", isSecureTextEntry: true)
-        
-        loginButton.setupButton(backgroundColor: .blue, title: "Log in", titleColor: .white, cornerRadius: 10)
-    
-        loginTextField.delegate = self
-        passwordTextField.delegate = self
-        
-        self.hideKeyboardOnTap()
-        
+        title = "Login screen"
+        hideKeyboardOnTap()
     }
 
     private func clearTextFields() {
@@ -64,42 +68,49 @@ final class LoginViewController: UIViewController {
             let okAction = UIAlertAction(title: "Ok!", style: .cancel, handler: nil)
             let alert = AlertService.customAlert(title: title, message: message, actions: [okAction])
             self.present(alert, animated: true)
-            
             self.activityIndicator.stopAnimating()
         }
     }
 
     private func presentMainViewController(with responseData: ResponseModel) {
         DispatchQueue.main.async {
-            guard let mainViewController = self.storyboard?.instantiateViewController(identifier: MainViewController.identifier) as? MainViewController else { return }
+            guard let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: MainViewController.identifier) as? MainViewController else { return }
             mainViewController.code = responseData.code
             self.show(mainViewController, sender: nil)
         }
     }
 
     private func requestAuthorization (username: String, password: String) {
-        NetworkService.shared.signIn(userName: username, password: password) { result in
+        activityIndicator.startAnimating()
+        NetworkService.shared.signIn(userName: username, password: password) { [weak self] result in
             switch result {
             case .success(let authData):
                 if authData.status == "ok" {
-                    self.presentMainViewController(with: authData)
+                    self?.presentMainViewController(with: authData)
                 } else {
-                    self.showAlertController(title: "Error", message: ErrorType.invalidLoginPassword.rawValue)
+                    self?.showAlertController(title: "Error", message: ErrorType.invalidLoginPassword.rawValue)
                 }
             case .failure(let error):
-                self.showAlertController(title: "Error", message: error.rawValue)
+                self?.showAlertController(title: "Error", message: error.rawValue)
             }
         }
     }
 
-    // MARK: IBActions
+    private func loginAction() {
+        if let loginText = loginTextField.text, !loginText.isEmpty,
+           let passwordText = passwordTextField.text, !passwordText.isEmpty {
+            requestAuthorization(username: loginText,
+                                 password: passwordText)
+        } else {
+            showAlertController(title: "Error",
+                                message: ErrorType.noLoginPassword.rawValue)
+        }
+    }
+
+    // MARK: - IBActions
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        if loginTextField.text == "" || passwordTextField.text == "" {
-            showAlertController(title: "Error", message: ErrorType.noLoginPassword.rawValue)
-        } else {
-            requestAuthorization(username: loginTextField.text ?? "", password: passwordTextField.text ?? "")
-        }
+        loginAction()
     }
 
 }
@@ -108,8 +119,7 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        requestAuthorization(username: loginTextField.text ?? "", password: passwordTextField.text ?? "")
-        activityIndicator.startAnimating()
+        loginAction()
         return true
     }
 }

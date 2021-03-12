@@ -9,23 +9,29 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
-    // MARK: IBOutlets
+    // MARK: - IBOutlets
 
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.identifier)
+        }
+    }
 
-    // MARK: Public properties
+    // MARK: - Public properties
 
     static let identifier = "MainViewControllerID"
     var code = ""
 
-    // MARK: Private properties
+    // MARK: - Private properties
 
     private var dataSource = DataModel().data
     private var pageNumber = 1
     private var alertController: UIAlertController?
     private let queue = OperationQueue()
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +39,23 @@ final class MainViewController: UIViewController {
         requestData()
     }
 
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func setupView() {
         title = "Airports"
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.identifier)
+    }
+
+    private func requestData() {
+        NetworkService.shared.getData(code: code, pageNumber: pageNumber) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.updateDataSource(with: data)
+            case .failure(let error):
+                print(error.rawValue)
+                self?.showAlertController(title: "Error", message: error.rawValue)
+                return
+            }
+        }
     }
 
     private func updateDataSource(with data: DataModel) {
@@ -47,19 +63,6 @@ final class MainViewController: UIViewController {
         dataSource.append(contentsOf: data.data)
         DispatchQueue.main.async {
             self.tableView.reloadData()
-        }
-    }
-
-    private func requestData() {
-        NetworkService.shared.getData(code: code, pageNumber: pageNumber) { result in
-            switch result {
-            case .success(let data):
-                self.updateDataSource(with: data)
-            case .failure(let error):
-                print(error.rawValue)
-                self.showAlertController(title: "Error", message: error.rawValue)
-                return
-            }
         }
     }
 
@@ -82,9 +85,7 @@ final class MainViewController: UIViewController {
             guard self.alertController == nil else { return }
             
             self.alertController = AlertService.customAlert(title: title, message: message, actions: [skipAction, retryAction, cancelAction])
-            
             guard let alert = self.alertController else { return }
-
             self.present(alert, animated: true)
         }
     }
@@ -99,7 +100,6 @@ extension MainViewController: UITableViewDataSource {
         guard let customCell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else { return UITableViewCell() }
 
         let item = dataSource[indexPath.row]
-
         customCell.titleLabel.text = item.name
         customCell.countryLabel.text = item.country
 
@@ -115,23 +115,19 @@ extension MainViewController: UITableViewDataSource {
                 loadOperation.imageView?.loadImage(from: url)
             }
         }
-
         return customCell
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastElement = dataSource.count - 1
-        if indexPath.row == lastElement {
-            requestData()
-        }
+        if indexPath.row == dataSource.count - 1 { requestData() }
     }
 
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 80 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { CGFloat(80) }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Prepare data for MapViewController
         guard let targetVC = storyboard?.instantiateViewController(withIdentifier: MapViewController.identifier) as? MapViewController else { return }

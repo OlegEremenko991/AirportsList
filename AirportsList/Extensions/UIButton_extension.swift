@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIButton {
-
     func setupButton(backgroundColor: UIColor,
                      title: String,
                      titleColor: UIColor,

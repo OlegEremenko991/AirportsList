@@ -7,14 +7,14 @@
 
 import UIKit
 
-public final class LoadImageOperation: Operation {
+final class LoadImageOperation: Operation {
 
-    // MARK: Public properties
+    // MARK: - Public properties
 
     var url: URL?
     var imageView: CustomImageView?
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     public override func main() {
         guard let url = url else { return }

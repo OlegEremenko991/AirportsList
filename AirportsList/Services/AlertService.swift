@@ -7,13 +7,13 @@
 
 import UIKit
 
-public final class AlertService {
+final class AlertService {
 
     static func customAlert(title: String, message: String, style: UIAlertController.Style? = nil, actions: [UIAlertAction]) -> UIAlertController {
-
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: style ?? .alert)
-        for action in actions { alertController.addAction(action) }
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: style ?? .alert)
+        actions.forEach { alertController.addAction($0) }
         return alertController
     }
-
 }
